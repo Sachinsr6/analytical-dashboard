@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				chart: {
+					revenue: 'hsl(var(--chart-revenue))',
+					expense: 'hsl(var(--chart-expense))',
+					profit: 'hsl(var(--chart-profit))',
+					xero: 'hsl(var(--chart-xero))',
+					paypal: 'hsl(var(--chart-paypal))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
