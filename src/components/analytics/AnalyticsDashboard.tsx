@@ -44,18 +44,18 @@ const AnalyticsDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="mx-auto max-w-7xl space-y-6">
+    <div className="p-4">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">Analytics Dashboard</h1>
-          <p className="text-muted-foreground">
-            Comprehensive financial insights from Xero and PayPal integrations
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold">My Analytics Dashboard</h1>
+          <p className="text-gray-600">
+            Financial data from Xero and PayPal
           </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* Stats */}
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6">
           <StatCard
             title="Total Revenue"
             value="$125,430"
@@ -86,8 +86,8 @@ const AnalyticsDashboard = () => {
           />
         </div>
 
-        {/* Charts Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Charts */}
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <RevenueChart />
           <ExpenseChart />
           <CashFlowChart />

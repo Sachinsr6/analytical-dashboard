@@ -44,28 +44,7 @@ const CashFlowChart = ({ data }: CashFlowChartProps) => {
     ],
   };
 
-  const options = {
-    ...defaultChartOptions,
-    plugins: {
-      ...defaultChartOptions.plugins,
-      title: {
-        display: false,
-      },
-    },
-    scales: {
-      ...defaultChartOptions.scales,
-      y: {
-        ...defaultChartOptions.scales?.y,
-        beginAtZero: true,
-        ticks: {
-          ...defaultChartOptions.scales?.y?.ticks,
-          callback: function(value: any) {
-            return '$' + value.toLocaleString();
-          },
-        },
-      },
-    },
-  };
+  const options = defaultChartOptions;
 
   return (
     <Card>

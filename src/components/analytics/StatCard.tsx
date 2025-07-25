@@ -13,34 +13,23 @@ interface StatCardProps {
   className?: string;
 }
 
-const StatCard = ({ title, value, description, trend, icon, className }: StatCardProps) => {
+const StatCard = ({ title, value, description, trend, icon }: StatCardProps) => {
   return (
-    <Card className={cn("relative overflow-hidden", className)}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
-        </CardTitle>
-        {icon && (
-          <div className="h-4 w-4 text-muted-foreground">
-            {icon}
-          </div>
+    <div className="border border-gray-300 rounded p-4 bg-white">
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-sm text-gray-600">{title}</h3>
+        {icon && <div className="text-gray-400">{icon}</div>}
+      </div>
+      <div className="text-xl font-bold">{value}</div>
+      <div className="text-xs text-gray-500 mt-1">
+        {description}
+        {trend && (
+          <span className={trend.isPositive ? "text-green-600 ml-2" : "text-red-600 ml-2"}>
+            {trend.isPositive ? "↗" : "↘"} {trend.value}%
+          </span>
         )}
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
-        <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-          <span>{description}</span>
-          {trend && (
-            <span className={cn(
-              "flex items-center",
-              trend.isPositive ? "text-chart-revenue" : "text-chart-expense"
-            )}>
-              {trend.isPositive ? "↗" : "↘"} {Math.abs(trend.value)}%
-            </span>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

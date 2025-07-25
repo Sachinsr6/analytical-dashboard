@@ -37,28 +37,7 @@ const PaymentMethodChart = ({ data }: PaymentMethodChartProps) => {
     ],
   };
 
-  const options = {
-    ...defaultChartOptions,
-    plugins: {
-      ...defaultChartOptions.plugins,
-      legend: {
-        ...defaultChartOptions.plugins?.legend,
-        position: 'right' as const,
-      },
-      tooltip: {
-        ...defaultChartOptions.plugins?.tooltip,
-        callbacks: {
-          label: function(context: any) {
-            const label = context.label || '';
-            const value = context.parsed;
-            const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0);
-            const percentage = ((value / total) * 100).toFixed(1);
-            return `${label}: $${value.toLocaleString()} (${percentage}%)`;
-          },
-        },
-      },
-    },
-  };
+  const options = defaultChartOptions;
 
   return (
     <Card>
