@@ -38,9 +38,9 @@ export const defaultChartOptions = {
 
 // Neutral colors
 export const chartColors = {
-  revenue: '#6b7280',
-  expense: '#9ca3af',
-  profit: '#4b5563',
-  xero: '#374151',
-  paypal: '#6b7280',
+  revenue: '#3b82f6',
+  expense: '#ef4444',
+  profit: '#10b981',
+  xero: '#6366f1',
+  paypal: '#f59e0b',
 };
