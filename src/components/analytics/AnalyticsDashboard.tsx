@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import RevenueChart from './RevenueChart';
 import ExpenseChart from './ExpenseChart';
 import CashFlowChart from './CashFlowChart';
-import PaymentMethodChart from './PaymentMethodChart';
 import StatCard from './StatCard';
 import '@/lib/chartConfig';
 
@@ -48,7 +47,7 @@ const AnalyticsDashboard = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold">My Analytics Dashboard</h1>
+          <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
           <p className="text-gray-600">
             Financial data from Xero and PayPal
           </p>
@@ -87,11 +86,12 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Charts */}
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+        <div className="space-y-4">
           <RevenueChart />
-          <ExpenseChart />
-          <CashFlowChart />
-          <PaymentMethodChart />
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+            <ExpenseChart />
+            <CashFlowChart />
+          </div>
         </div>
       </div>
     </div>

@@ -36,11 +36,11 @@ export const defaultChartOptions = {
   },
 };
 
-// Simple colors
+// Neutral colors
 export const chartColors = {
-  revenue: '#00ff00',
-  expense: '#ff0000',
-  profit: '#0000ff',
-  xero: '#008080',
-  paypal: '#1E90FF',
+  revenue: '#6b7280',
+  expense: '#9ca3af',
+  profit: '#4b5563',
+  xero: '#374151',
+  paypal: '#6b7280',
 };
