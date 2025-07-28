@@ -22,9 +22,9 @@ function calculateFinancials(data) {
 
 // Format currency
 function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
         style: 'currency',
-        currency: 'USD',
+        currency: 'INR',
         minimumFractionDigits: 0
     }).format(amount);
 }
@@ -71,7 +71,7 @@ function createRevenueExpenseChart() {
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return '$' + value.toLocaleString();
+                            return '₹' + value.toLocaleString();
                         }
                     }
                 }
@@ -83,7 +83,7 @@ function createRevenueExpenseChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
+                            return context.dataset.label + ': ₹' + context.parsed.y.toLocaleString();
                         }
                     }
                 }
@@ -123,7 +123,7 @@ function createProfitTrendChart() {
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return '$' + value.toLocaleString();
+                            return '₹' + value.toLocaleString();
                         }
                     }
                 }
@@ -135,7 +135,7 @@ function createProfitTrendChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return 'Net Profit: $' + context.parsed.y.toLocaleString();
+                            return 'Net Profit: ₹' + context.parsed.y.toLocaleString();
                         }
                     }
                 }
