@@ -36,13 +36,7 @@ const BarChart3Icon = () => (
 );
 
 // StatCard component
-const StatCard = ({ title, value, description, trend, icon }: {
-  title: string;
-  value: string;
-  description: string;
-  trend?: { value: number; isPositive: boolean };
-  icon?: React.ReactNode;
-}) => {
+const StatCard = ({ title, value, description, trend, icon }) => {
   return (
     <div className="border border-gray-300 rounded p-4 bg-white">
       <div className="flex justify-between items-center mb-2">
