@@ -228,28 +228,28 @@ const AnalyticsDashboard = () => {
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6">
           <StatCard
             title="Total Revenue"
-            value="$125,430"
+            value="₹125,430"
             description="This month"
             trend={{ value: 12.5, isPositive: true }}
             icon={<DollarSignIcon />}
           />
           <StatCard
-            title="Profit Margin"
-            value="32.4%"
-            description="Current month"
-            trend={{ value: 2.1, isPositive: true }}
-            icon={<TrendingUpIcon />}
-          />
-          <StatCard
-            title="Active Transactions"
-            value="2,847"
-            description="Last 30 days"
-            trend={{ value: 8.3, isPositive: true }}
+            title="Total Expense"
+            value="₹83,210"
+            description="This month"
+            trend={{ value: 5.4, isPositive: false }}
             icon={<CreditCardIcon />}
           />
           <StatCard
-            title="Cash Flow"
-            value="$87,320"
+            title="Net Profit"
+            value="₹42,220"
+            description="This month"
+            trend={{ value: 18.7, isPositive: true }}
+            icon={<TrendingUpIcon />}
+          />
+          <StatCard
+            title="Net Cashflow"
+            value="₹87,320"
             description="Net this month"
             trend={{ value: 15.2, isPositive: true }}
             icon={<BarChart3Icon />}
