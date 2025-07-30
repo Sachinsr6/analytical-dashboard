@@ -49,11 +49,11 @@ export const chartConfig = {
 };
 
 export const chartColors = {
-  revenue: '#22c55e',
-  expense: '#ef4444', 
-  profit: '#3b82f6',
+  revenue: '#6366f1',
+  expense: '#f97316', 
+  profit: '#10b981',
   xero: '#8b5cf6',
-  paypal: '#f59e0b',
+  paypal: '#06b6d4',
 };
 
 export const defaultChartOptions = {
