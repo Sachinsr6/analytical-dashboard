@@ -10,8 +10,33 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 
-// Import Chart.js configuration synchronously
-import '@/lib/chartConfig';
+// Register Chart.js components immediately
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  BarElement,
+  ArcElement,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  BarElement,
+  ArcElement
+);
 
 // Icons
 const DollarSignIcon = () => (
