@@ -1,6 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Line, Doughnut, Bar } from 'react-chartjs-2';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
 import { chartColors, defaultChartOptions } from '@/lib/chartConfig';
 import '@/lib/chartConfig';
 
@@ -208,6 +216,8 @@ const CashFlowChart = () => {
 };
 
 const AnalyticsDashboard = () => {
+  const [timePeriod, setTimePeriod] = useState('Monthly');
+
   useEffect(() => {
     // Initialize chart configurations when component mounts
     import('@/lib/chartConfig');
@@ -219,9 +229,6 @@ const AnalyticsDashboard = () => {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-          <p className="text-gray-600">
-            Financial data from Xero and PayPal
-          </p>
         </div>
 
         {/* Stats */}
@@ -254,6 +261,29 @@ const AnalyticsDashboard = () => {
             trend={{ value: 15.2, isPositive: true }}
             icon={<BarChart3Icon />}
           />
+        </div>
+
+        {/* Time Period Selector */}
+        <div className="mb-6">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-[150px] justify-between">
+                {timePeriod}
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[150px]">
+              <DropdownMenuItem onClick={() => setTimePeriod('Monthly')}>
+                Monthly
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimePeriod('Quarterly')}>
+                Quarterly
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimePeriod('Annually')}>
+                Annually
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Charts */}
