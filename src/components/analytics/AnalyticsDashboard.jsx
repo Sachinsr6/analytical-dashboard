@@ -9,7 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
-import { chartColors, defaultChartOptions } from '@/lib/chartConfig';
+
+// Import Chart.js configuration synchronously
 import '@/lib/chartConfig';
 
 // Icons
@@ -78,12 +79,12 @@ const RevenueChart = () => {
       {
         label: 'Xero Revenue',
         data: sampleData.xeroRevenue,
-        borderColor: chartColors.xero,
-        backgroundColor: `${chartColors.xero}20`,
+        borderColor: '#8b5cf6',
+        backgroundColor: '#8b5cf620',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: chartColors.xero,
+        pointBackgroundColor: '#8b5cf6',
         pointBorderColor: '#ffffff',
         pointBorderWidth: 2,
         pointRadius: 6,
@@ -92,18 +93,42 @@ const RevenueChart = () => {
       {
         label: 'PayPal Revenue',
         data: sampleData.paypalRevenue,
-        borderColor: chartColors.paypal,
-        backgroundColor: `${chartColors.paypal}20`,
+        borderColor: '#06b6d4',
+        backgroundColor: '#06b6d420',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: chartColors.paypal,
+        pointBackgroundColor: '#06b6d4',
         pointBorderColor: '#ffffff',
         pointBorderWidth: 2,
         pointRadius: 6,
         pointHoverRadius: 8,
       },
     ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+      },
+    },
+    scales: {
+      x: {
+        type: 'category',
+        display: true,
+      },
+      y: {
+        display: true,
+        beginAtZero: true,
+      },
+    },
   };
 
   return (
@@ -116,7 +141,7 @@ const RevenueChart = () => {
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
-          <Line data={lineData} options={defaultChartOptions} />
+          <Line data={lineData} options={options} />
         </div>
       </CardContent>
     </Card>
@@ -136,17 +161,31 @@ const ExpenseChart = () => {
       {
         data: sampleData.amounts,
         backgroundColor: [
-          chartColors.expense,
-          chartColors.revenue,
-          chartColors.profit,
-          chartColors.xero,
-          chartColors.paypal,
+          '#f97316',
+          '#6366f1',
+          '#10b981',
+          '#8b5cf6',
+          '#06b6d4',
         ],
         borderColor: '#ffffff',
         borderWidth: 3,
         hoverBorderWidth: 4,
       },
     ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+      },
+    },
   };
 
   return (
@@ -159,7 +198,7 @@ const ExpenseChart = () => {
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
-          <Doughnut data={doughnutData} options={defaultChartOptions} />
+          <Doughnut data={doughnutData} options={options} />
         </div>
       </CardContent>
     </Card>
@@ -180,8 +219,8 @@ const CashFlowChart = () => {
       {
         label: 'Income',
         data: sampleData.income,
-        backgroundColor: chartColors.revenue,
-        borderColor: chartColors.revenue,
+        backgroundColor: '#6366f1',
+        borderColor: '#6366f1',
         borderWidth: 1,
         borderRadius: 6,
         borderSkipped: false,
@@ -189,13 +228,37 @@ const CashFlowChart = () => {
       {
         label: 'Expenses',
         data: sampleData.expenses,
-        backgroundColor: chartColors.expense,
-        borderColor: chartColors.expense,
+        backgroundColor: '#f97316',
+        borderColor: '#f97316',
         borderWidth: 1,
         borderRadius: 6,
         borderSkipped: false,
       },
     ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+      },
+    },
+    scales: {
+      x: {
+        type: 'category',
+        display: true,
+      },
+      y: {
+        display: true,
+        beginAtZero: true,
+      },
+    },
   };
 
   return (
@@ -208,7 +271,7 @@ const CashFlowChart = () => {
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
-          <Bar data={barData} options={defaultChartOptions} />
+          <Bar data={barData} options={options} />
         </div>
       </CardContent>
     </Card>
@@ -217,11 +280,6 @@ const CashFlowChart = () => {
 
 const AnalyticsDashboard = () => {
   const [timePeriod, setTimePeriod] = useState('Monthly');
-
-  useEffect(() => {
-    // Initialize chart configurations when component mounts
-    import('@/lib/chartConfig');
-  }, []);
 
   return (
     <div className="p-4">
