@@ -91,8 +91,8 @@ const StatCard = ({ title, value, description, trend, icon }) => {
 };
 
 // Revenue Chart
-const RevenueChart = () => {
-  const sampleData = {
+const RevenueChart = ({ data }) => {
+  const sampleData = data || {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     xeroRevenue: [12000, 19000, 15000, 25000, 22000, 30000],
     paypalRevenue: [8000, 12000, 18000, 15000, 20000, 25000],
@@ -231,8 +231,8 @@ const ExpenseChart = () => {
 };
 
 // Cash Flow Chart
-const CashFlowChart = () => {
-  const sampleData = {
+const CashFlowChart = ({ data }) => {
+  const sampleData = data || {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     income: [20000, 31000, 33000, 40000, 42000, 55000],
     expenses: [15000, 18000, 21000, 25000, 28000, 32000],
@@ -305,6 +305,52 @@ const CashFlowChart = () => {
 
 const AnalyticsDashboard = () => {
   const [timePeriod, setTimePeriod] = useState('Monthly');
+  const [selectedPeriod, setSelectedPeriod] = useState('January');
+
+  // Generate options based on time period
+  const getPeriodOptions = () => {
+    switch (timePeriod) {
+      case 'Monthly':
+        return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      case 'Quarterly':
+        return ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024'];
+      case 'Annually':
+        return ['2021', '2022', '2023', '2024'];
+      default:
+        return [];
+    }
+  };
+
+  // Get chart data based on selections
+  const getChartData = () => {
+    if (timePeriod === 'Monthly') {
+      return {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        xeroRevenue: [3000, 4750, 3750, 6250],
+        paypalRevenue: [2000, 3000, 4500, 3750],
+        income: [5000, 7750, 8250, 10000],
+        expenses: [3750, 4500, 5250, 6250],
+      };
+    } else if (timePeriod === 'Quarterly') {
+      return {
+        labels: ['Month 1', 'Month 2', 'Month 3'],
+        xeroRevenue: [36000, 57000, 45000],
+        paypalRevenue: [24000, 36000, 54000],
+        income: [60000, 93000, 99000],
+        expenses: [45000, 54000, 63000],
+      };
+    } else { // Annually
+      return {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        xeroRevenue: [138000, 171000, 195000, 216000],
+        paypalRevenue: [114000, 147000, 183000, 207000],
+        income: [252000, 318000, 378000, 423000],
+        expenses: [162000, 207000, 252000, 288000],
+      };
+    }
+  };
+
+  const chartData = getChartData();
 
   return (
     <div className="p-4">
@@ -346,8 +392,8 @@ const AnalyticsDashboard = () => {
           />
         </div>
 
-        {/* Time Period Selector */}
-        <div className="mb-6">
+        {/* Time Period Selectors */}
+        <div className="mb-6 flex gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="w-[150px] justify-between">
@@ -356,25 +402,50 @@ const AnalyticsDashboard = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[150px]">
-              <DropdownMenuItem onClick={() => setTimePeriod('Monthly')}>
+              <DropdownMenuItem onClick={() => {
+                setTimePeriod('Monthly');
+                setSelectedPeriod('January');
+              }}>
                 Monthly
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimePeriod('Quarterly')}>
+              <DropdownMenuItem onClick={() => {
+                setTimePeriod('Quarterly');
+                setSelectedPeriod('Q1 2024');
+              }}>
                 Quarterly
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimePeriod('Annually')}>
+              <DropdownMenuItem onClick={() => {
+                setTimePeriod('Annually');
+                setSelectedPeriod('2024');
+              }}>
                 Annually
               </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-[150px] justify-between">
+                {selectedPeriod}
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[150px]">
+              {getPeriodOptions().map((option) => (
+                <DropdownMenuItem key={option} onClick={() => setSelectedPeriod(option)}>
+                  {option}
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
         {/* Charts */}
         <div className="space-y-4">
-          <RevenueChart />
+          <RevenueChart data={chartData} />
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
             <ExpenseChart />
-            <CashFlowChart />
+            <CashFlowChart data={chartData} />
           </div>
         </div>
       </div>
