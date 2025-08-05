@@ -306,6 +306,7 @@ const CashFlowChart = ({ data }) => {
 const AnalyticsDashboard = () => {
   const [timePeriod, setTimePeriod] = useState('Monthly');
   const [selectedPeriod, setSelectedPeriod] = useState('January');
+  const [selectedYear, setSelectedYear] = useState('2024');
 
   // Generate options based on time period
   const getPeriodOptions = () => {
@@ -313,7 +314,7 @@ const AnalyticsDashboard = () => {
       case 'Monthly':
         return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       case 'Quarterly':
-        return ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024'];
+        return ['Q1', 'Q2', 'Q3', 'Q4'];
       case 'Annually':
         return ['2021', '2022', '2023', '2024'];
       default:
@@ -321,59 +322,79 @@ const AnalyticsDashboard = () => {
     }
   };
 
+  // Generate year options
+  const getYearOptions = () => {
+    return ['2021', '2022', '2023', '2024'];
+  };
+
   // Get chart data based on selections
   const getChartData = () => {
+    const key = timePeriod === 'Annually' ? selectedPeriod : `${selectedPeriod}_${selectedYear}`;
+    
     if (timePeriod === 'Monthly') {
-      // Different data for different months
       const monthData = {
-        'January': {
+        'January_2024': {
           labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
           xeroRevenue: [3000, 4750, 3750, 6250],
           paypalRevenue: [2000, 3000, 4500, 3750],
           income: [5000, 7750, 8250, 10000],
           expenses: [3750, 4500, 5250, 6250],
         },
-        'February': {
+        'February_2024': {
           labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
           xeroRevenue: [3500, 5250, 4250, 7000],
           paypalRevenue: [2500, 3500, 5000, 4250],
           income: [6000, 8750, 9250, 11250],
           expenses: [4000, 5000, 5750, 6750],
         },
-        'March': {
+        'March_2024': {
           labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
           xeroRevenue: [4000, 6000, 5000, 8000],
           paypalRevenue: [3000, 4000, 5500, 5000],
           income: [7000, 10000, 10500, 13000],
           expenses: [4500, 5500, 6250, 7500],
+        },
+        'January_2023': {
+          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+          xeroRevenue: [2500, 4000, 3200, 5500],
+          paypalRevenue: [1800, 2700, 4000, 3200],
+          income: [4300, 6700, 7200, 8700],
+          expenses: [3200, 3900, 4700, 5500],
         }
       };
-      return monthData[selectedPeriod] || monthData['January'];
+      return monthData[key] || monthData['January_2024'];
     } else if (timePeriod === 'Quarterly') {
       const quarterData = {
-        'Q1 2024': {
+        'Q1_2024': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
           xeroRevenue: [36000, 57000, 45000],
           paypalRevenue: [24000, 36000, 54000],
           income: [60000, 93000, 99000],
           expenses: [45000, 54000, 63000],
         },
-        'Q2 2024': {
+        'Q2_2024': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
           xeroRevenue: [42000, 63000, 51000],
           paypalRevenue: [28000, 42000, 60000],
           income: [70000, 105000, 111000],
           expenses: [52000, 61000, 70000],
         },
-        'Q3 2024': {
+        'Q3_2024': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
           xeroRevenue: [48000, 69000, 57000],
           paypalRevenue: [32000, 48000, 66000],
           income: [80000, 117000, 123000],
           expenses: [58000, 68000, 77000],
+        },
+        'Q1_2023': {
+          labels: ['Month 1', 'Month 2', 'Month 3'],
+          xeroRevenue: [32000, 51000, 40000],
+          paypalRevenue: [21000, 32000, 48000],
+          income: [53000, 83000, 88000],
+          expenses: [40000, 48000, 56000],
         }
       };
-      return quarterData[selectedPeriod] || quarterData['Q1 2024'];
+      return quarterData[key] || quarterData['Q1_2024'];
     } else { // Annually
       const yearData = {
         '2024': {
@@ -404,9 +425,11 @@ const AnalyticsDashboard = () => {
 
   // Get stats data based on selections
   const getStatsData = () => {
+    const key = timePeriod === 'Annually' ? selectedPeriod : `${selectedPeriod}_${selectedYear}`;
+    
     if (timePeriod === 'Monthly') {
       const monthStats = {
-        'January': {
+        'January_2024': {
           totalRevenue: '₹17,750',
           totalExpense: '₹15,250',
           netProfit: '₹2,500',
@@ -418,7 +441,7 @@ const AnalyticsDashboard = () => {
             cashflow: { value: 15.2, isPositive: true }
           }
         },
-        'February': {
+        'February_2024': {
           totalRevenue: '₹20,250',
           totalExpense: '₹17,500',
           netProfit: '₹2,750',
@@ -430,7 +453,7 @@ const AnalyticsDashboard = () => {
             cashflow: { value: 13.7, isPositive: true }
           }
         },
-        'March': {
+        'March_2024': {
           totalRevenue: '₹23,000',
           totalExpense: '₹19,750',
           netProfit: '₹3,250',
@@ -441,12 +464,24 @@ const AnalyticsDashboard = () => {
             profit: { value: 18.2, isPositive: true },
             cashflow: { value: 14.9, isPositive: true }
           }
+        },
+        'January_2023': {
+          totalRevenue: '₹15,200',
+          totalExpense: '₹13,100',
+          netProfit: '₹2,100',
+          netCashflow: '₹26,900',
+          trends: {
+            revenue: { value: 8.7, isPositive: true },
+            expense: { value: 4.2, isPositive: false },
+            profit: { value: 16.8, isPositive: true },
+            cashflow: { value: 12.3, isPositive: true }
+          }
         }
       };
-      return monthStats[selectedPeriod] || monthStats['January'];
+      return monthStats[key] || monthStats['January_2024'];
     } else if (timePeriod === 'Quarterly') {
       const quarterStats = {
-        'Q1 2024': {
+        'Q1_2024': {
           totalRevenue: '₹252,000',
           totalExpense: '₹162,000',
           netProfit: '₹90,000',
@@ -458,7 +493,7 @@ const AnalyticsDashboard = () => {
             cashflow: { value: 22.8, isPositive: true }
           }
         },
-        'Q2 2024': {
+        'Q2_2024': {
           totalRevenue: '₹286,000',
           totalExpense: '₹183,000',
           netProfit: '₹103,000',
@@ -470,7 +505,7 @@ const AnalyticsDashboard = () => {
             cashflow: { value: 13.5, isPositive: true }
           }
         },
-        'Q3 2024': {
+        'Q3_2024': {
           totalRevenue: '₹320,000',
           totalExpense: '₹203,000',
           netProfit: '₹117,000',
@@ -481,9 +516,21 @@ const AnalyticsDashboard = () => {
             profit: { value: 13.6, isPositive: true },
             cashflow: { value: 11.9, isPositive: true }
           }
+        },
+        'Q1_2023': {
+          totalRevenue: '₹224,000',
+          totalExpense: '₹144,000',
+          netProfit: '₹80,000',
+          netCashflow: '₹224,000',
+          trends: {
+            revenue: { value: 7.1, isPositive: true },
+            expense: { value: 10.8, isPositive: false },
+            profit: { value: 12.5, isPositive: true },
+            cashflow: { value: 18.9, isPositive: true }
+          }
         }
       };
-      return quarterStats[selectedPeriod] || quarterStats['Q1 2024'];
+      return quarterStats[key] || quarterStats['Q1_2024'];
     } else { // Annually
       const yearStats = {
         '2024': {
@@ -554,10 +601,10 @@ const AnalyticsDashboard = () => {
               }}>
                 Monthly
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => {
-                setTimePeriod('Quarterly');
-                setSelectedPeriod('Q1 2024');
-              }}>
+               <DropdownMenuItem onClick={() => {
+                 setTimePeriod('Quarterly');
+                 setSelectedPeriod('Q1');
+               }}>
                 Quarterly
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => {
@@ -584,6 +631,25 @@ const AnalyticsDashboard = () => {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+
+          {/* Year Dropdown - Show only for Monthly and Quarterly */}
+          {(timePeriod === 'Monthly' || timePeriod === 'Quarterly') && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="w-[150px] justify-between">
+                  {selectedYear}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[150px]">
+                {getYearOptions().map((year) => (
+                  <DropdownMenuItem key={year} onClick={() => setSelectedYear(year)}>
+                    {year}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
 
         {/* Stats */}
