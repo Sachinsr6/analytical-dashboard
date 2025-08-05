@@ -316,7 +316,7 @@ const AnalyticsDashboard = () => {
       case 'Quarterly':
         return ['Q1', 'Q2', 'Q3', 'Q4'];
       case 'Annually':
-        return ['2021', '2022', '2023', '2024'];
+        return ['2024', '2025'];
       default:
         return [];
     }
@@ -324,7 +324,7 @@ const AnalyticsDashboard = () => {
 
   // Generate year options
   const getYearOptions = () => {
-    return ['2021', '2022', '2023', '2024'];
+    return ['2024', '2025'];
   };
 
   // Get chart data based on selections
@@ -355,71 +355,27 @@ const AnalyticsDashboard = () => {
           income: [7000, 10000, 10500, 13000],
           expenses: [4500, 5500, 6250, 7500],
         },
-        // 2023 Data
-        'January_2023': {
+        // 2025 Data
+        'January_2025': {
           labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2500, 4000, 3200, 5500],
-          paypalRevenue: [1800, 2700, 4000, 3200],
-          income: [4300, 6700, 7200, 8700],
-          expenses: [3200, 3900, 4700, 5500],
+          xeroRevenue: [4500, 6000, 5500, 8500],
+          paypalRevenue: [3200, 4500, 6000, 5200],
+          income: [7700, 10500, 11500, 13700],
+          expenses: [4200, 5800, 6500, 7800],
         },
-        'February_2023': {
+        'February_2025': {
           labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2800, 4200, 3500, 5800],
-          paypalRevenue: [2000, 2900, 4200, 3500],
-          income: [4800, 7100, 7700, 9300],
-          expenses: [3400, 4100, 4900, 5800],
+          xeroRevenue: [5000, 7000, 6000, 9000],
+          paypalRevenue: [3500, 5000, 6500, 5800],
+          income: [8500, 12000, 12500, 14800],
+          expenses: [4800, 6200, 7000, 8500],
         },
-        'March_2023': {
+        'March_2025': {
           labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [3200, 4800, 4000, 6500],
-          paypalRevenue: [2400, 3600, 5000, 4500],
-          income: [5600, 8400, 9000, 11000],
-          expenses: [3800, 4600, 5400, 6500],
-        },
-        // 2022 Data
-        'January_2022': {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2000, 3200, 2600, 4400],
-          paypalRevenue: [1400, 2200, 3200, 2600],
-          income: [3400, 5400, 5800, 7000],
-          expenses: [2600, 3200, 3800, 4400],
-        },
-        'February_2022': {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2200, 3600, 2900, 4800],
-          paypalRevenue: [1600, 2500, 3600, 2900],
-          income: [3800, 6100, 6500, 7700],
-          expenses: [2800, 3500, 4100, 4800],
-        },
-        'March_2022': {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2600, 4000, 3200, 5200],
-          paypalRevenue: [1900, 3000, 4000, 3600],
-          income: [4500, 7000, 7200, 8800],
-          expenses: [3200, 3800, 4400, 5200],
-        },
-        // 2021 Data
-        'January_2021': {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [1800, 2800, 2200, 3800],
-          paypalRevenue: [1200, 1900, 2800, 2200],
-          income: [3000, 4700, 5000, 6000],
-          expenses: [2200, 2800, 3200, 3800],
-        },
-        'February_2021': {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2000, 3200, 2500, 4200],
-          paypalRevenue: [1400, 2200, 3200, 2500],
-          income: [3400, 5400, 5700, 6700],
-          expenses: [2400, 3000, 3500, 4200],
-        },
-        'March_2021': {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          xeroRevenue: [2200, 3600, 2800, 4600],
-          paypalRevenue: [1600, 2600, 3600, 3200],
-          income: [3800, 6200, 6400, 7800],
-          expenses: [2600, 3200, 3600, 4600],
+          xeroRevenue: [5500, 7500, 6500, 9500],
+          paypalRevenue: [4000, 5500, 7000, 6200],
+          income: [9500, 13000, 13500, 15700],
+          expenses: [5200, 6800, 7500, 9000],
         },
       };
       return monthData[key] || monthData['January_2024'];
@@ -446,91 +402,40 @@ const AnalyticsDashboard = () => {
           income: [80000, 117000, 123000],
           expenses: [58000, 68000, 77000],
         },
-        'Q1_2023': {
+        'Q4_2024': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [32000, 51000, 40000],
-          paypalRevenue: [21000, 32000, 48000],
-          income: [53000, 83000, 88000],
-          expenses: [40000, 48000, 56000],
+          xeroRevenue: [54000, 75000, 63000],
+          paypalRevenue: [36000, 54000, 72000],
+          income: [90000, 129000, 135000],
+          expenses: [65000, 75000, 85000],
         },
-        'Q2_2023': {
+        'Q1_2025': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [36000, 57000, 45000],
-          paypalRevenue: [24000, 36000, 54000],
-          income: [60000, 93000, 99000],
-          expenses: [45000, 54000, 63000],
+          xeroRevenue: [60000, 81000, 69000],
+          paypalRevenue: [40000, 60000, 78000],
+          income: [100000, 141000, 147000],
+          expenses: [72000, 82000, 92000],
         },
-        'Q3_2023': {
+        'Q2_2025': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [40000, 63000, 50000],
-          paypalRevenue: [27000, 40000, 58000],
-          income: [67000, 103000, 108000],
-          expenses: [50000, 59000, 68000],
+          xeroRevenue: [66000, 87000, 75000],
+          paypalRevenue: [44000, 66000, 84000],
+          income: [110000, 153000, 159000],
+          expenses: [78000, 88000, 98000],
         },
-        'Q4_2023': {
+        'Q3_2025': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [44000, 69000, 55000],
-          paypalRevenue: [30000, 44000, 62000],
-          income: [74000, 113000, 117000],
-          expenses: [55000, 64000, 73000],
+          xeroRevenue: [72000, 93000, 81000],
+          paypalRevenue: [48000, 72000, 90000],
+          income: [120000, 165000, 171000],
+          expenses: [84000, 94000, 104000],
         },
-        // 2022 Quarterly Data
-        'Q1_2022': {
+        'Q4_2025': {
           labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [28000, 44000, 35000],
-          paypalRevenue: [18000, 28000, 42000],
-          income: [46000, 72000, 77000],
-          expenses: [35000, 42000, 49000],
-        },
-        'Q2_2022': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [32000, 50000, 40000],
-          paypalRevenue: [21000, 32000, 47000],
-          income: [53000, 82000, 87000],
-          expenses: [40000, 47000, 55000],
-        },
-        'Q3_2022': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [36000, 56000, 45000],
-          paypalRevenue: [24000, 36000, 52000],
-          income: [60000, 92000, 97000],
-          expenses: [45000, 52000, 61000],
-        },
-        'Q4_2022': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [40000, 62000, 50000],
-          paypalRevenue: [27000, 40000, 57000],
-          income: [67000, 102000, 107000],
-          expenses: [50000, 57000, 67000],
-        },
-        // 2021 Quarterly Data
-        'Q1_2021': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [24000, 38000, 30000],
-          paypalRevenue: [16000, 24000, 36000],
-          income: [40000, 62000, 66000],
-          expenses: [30000, 36000, 42000],
-        },
-        'Q2_2021': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [28000, 43000, 34000],
-          paypalRevenue: [18000, 28000, 41000],
-          income: [46000, 71000, 75000],
-          expenses: [35000, 41000, 48000],
-        },
-        'Q3_2021': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [32000, 48000, 38000],
-          paypalRevenue: [21000, 32000, 46000],
-          income: [53000, 80000, 84000],
-          expenses: [40000, 46000, 54000],
-        },
-        'Q4_2021': {
-          labels: ['Month 1', 'Month 2', 'Month 3'],
-          xeroRevenue: [36000, 54000, 43000],
-          paypalRevenue: [24000, 36000, 51000],
-          income: [60000, 90000, 94000],
-          expenses: [45000, 51000, 60000],
+          xeroRevenue: [78000, 99000, 87000],
+          paypalRevenue: [52000, 78000, 96000],
+          income: [130000, 177000, 183000],
+          expenses: [90000, 100000, 110000],
         }
       };
       return quarterData[key] || quarterData['Q1_2024'];
@@ -543,26 +448,12 @@ const AnalyticsDashboard = () => {
           income: [60000, 93000, 99000, 70000, 105000, 111000, 80000, 117000, 123000, 90000, 126000, 135000],
           expenses: [45000, 54000, 63000, 52000, 61000, 70000, 58000, 68000, 77000, 65000, 73000, 83000],
         },
-        '2023': {
+        '2025': {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          xeroRevenue: [32000, 51000, 40000, 36000, 57000, 45000, 40000, 63000, 50000, 44000, 69000, 55000],
-          paypalRevenue: [21000, 32000, 48000, 24000, 36000, 54000, 27000, 40000, 58000, 30000, 44000, 62000],
-          income: [53000, 83000, 88000, 60000, 93000, 99000, 67000, 103000, 108000, 74000, 113000, 117000],
-          expenses: [40000, 48000, 56000, 45000, 54000, 63000, 50000, 59000, 68000, 55000, 64000, 73000],
-        },
-        '2022': {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          xeroRevenue: [28000, 44000, 35000, 32000, 50000, 40000, 36000, 56000, 45000, 40000, 62000, 50000],
-          paypalRevenue: [18000, 28000, 42000, 21000, 32000, 47000, 24000, 36000, 52000, 27000, 40000, 57000],
-          income: [46000, 72000, 77000, 53000, 82000, 87000, 60000, 92000, 97000, 67000, 102000, 107000],
-          expenses: [35000, 42000, 49000, 40000, 47000, 55000, 45000, 52000, 61000, 50000, 57000, 67000],
-        },
-        '2021': {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          xeroRevenue: [24000, 38000, 30000, 28000, 43000, 34000, 32000, 48000, 38000, 36000, 54000, 43000],
-          paypalRevenue: [16000, 24000, 36000, 18000, 28000, 41000, 21000, 32000, 46000, 24000, 36000, 51000],
-          income: [40000, 62000, 66000, 46000, 71000, 75000, 53000, 80000, 84000, 60000, 90000, 94000],
-          expenses: [30000, 36000, 42000, 35000, 41000, 48000, 40000, 46000, 54000, 45000, 51000, 60000],
+          xeroRevenue: [66000, 87000, 75000, 72000, 93000, 81000, 78000, 99000, 87000, 84000, 102000, 90000],
+          paypalRevenue: [44000, 66000, 84000, 48000, 72000, 90000, 52000, 78000, 96000, 56000, 84000, 105000],
+          income: [110000, 153000, 159000, 120000, 165000, 171000, 130000, 177000, 183000, 140000, 186000, 195000],
+          expenses: [78000, 88000, 98000, 84000, 94000, 104000, 90000, 100000, 110000, 96000, 106000, 116000],
         }
       };
       return yearData[selectedPeriod] || yearData['2024'];
