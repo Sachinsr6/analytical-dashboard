@@ -350,7 +350,52 @@ const AnalyticsDashboard = () => {
     }
   };
 
+  // Get stats data based on selections
+  const getStatsData = () => {
+    if (timePeriod === 'Monthly') {
+      return {
+        totalRevenue: '₹17,750',
+        totalExpense: '₹15,250',
+        netProfit: '₹2,500',
+        netCashflow: '₹31,000',
+        trends: {
+          revenue: { value: 12.5, isPositive: true },
+          expense: { value: 5.4, isPositive: false },
+          profit: { value: 18.7, isPositive: true },
+          cashflow: { value: 15.2, isPositive: true }
+        }
+      };
+    } else if (timePeriod === 'Quarterly') {
+      return {
+        totalRevenue: '₹138,000',
+        totalExpense: '₹162,000',
+        netProfit: '₹-24,000',
+        netCashflow: '₹252,000',
+        trends: {
+          revenue: { value: 8.3, isPositive: true },
+          expense: { value: 12.1, isPositive: false },
+          profit: { value: 15.5, isPositive: false },
+          cashflow: { value: 22.8, isPositive: true }
+        }
+      };
+    } else { // Annually
+      return {
+        totalRevenue: '₹720,000',
+        totalExpense: '₹909,000',
+        netProfit: '₹-189,000',
+        netCashflow: '₹1,371,000',
+        trends: {
+          revenue: { value: 25.4, isPositive: true },
+          expense: { value: 18.9, isPositive: false },
+          profit: { value: 32.1, isPositive: false },
+          cashflow: { value: 28.7, isPositive: true }
+        }
+      };
+    }
+  };
+
   const chartData = getChartData();
+  const statsData = getStatsData();
 
   return (
     <div className="p-4">
@@ -358,38 +403,6 @@ const AnalyticsDashboard = () => {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-        </div>
-
-        {/* Stats */}
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6">
-          <StatCard
-            title="Total Revenue"
-            value="₹125,430"
-            description="This month"
-            trend={{ value: 12.5, isPositive: true }}
-            icon={<DollarSignIcon />}
-          />
-          <StatCard
-            title="Total Expense"
-            value="₹83,210"
-            description="This month"
-            trend={{ value: 5.4, isPositive: false }}
-            icon={<CreditCardIcon />}
-          />
-          <StatCard
-            title="Net Profit"
-            value="₹42,220"
-            description="This month"
-            trend={{ value: 18.7, isPositive: true }}
-            icon={<TrendingUpIcon />}
-          />
-          <StatCard
-            title="Net Cashflow"
-            value="₹87,320"
-            description="Net this month"
-            trend={{ value: 15.2, isPositive: true }}
-            icon={<BarChart3Icon />}
-          />
         </div>
 
         {/* Time Period Selectors */}
@@ -438,6 +451,38 @@ const AnalyticsDashboard = () => {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+        </div>
+
+        {/* Stats */}
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6">
+          <StatCard
+            title="Total Revenue"
+            value={statsData.totalRevenue}
+            description={`This ${timePeriod.toLowerCase().slice(0, -2)}`}
+            trend={statsData.trends.revenue}
+            icon={<DollarSignIcon />}
+          />
+          <StatCard
+            title="Total Expense"
+            value={statsData.totalExpense}
+            description={`This ${timePeriod.toLowerCase().slice(0, -2)}`}
+            trend={statsData.trends.expense}
+            icon={<CreditCardIcon />}
+          />
+          <StatCard
+            title="Net Profit"
+            value={statsData.netProfit}
+            description={`This ${timePeriod.toLowerCase().slice(0, -2)}`}
+            trend={statsData.trends.profit}
+            icon={<TrendingUpIcon />}
+          />
+          <StatCard
+            title="Net Cashflow"
+            value={statsData.netCashflow}
+            description={`Net this ${timePeriod.toLowerCase().slice(0, -2)}`}
+            trend={statsData.trends.cashflow}
+            icon={<BarChart3Icon />}
+          />
         </div>
 
         {/* Charts */}
