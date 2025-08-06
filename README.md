@@ -1,37 +1,53 @@
-# Welcome to your  project
 
-**Use your preferred IDE**
+# Analytical Dashboard
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+A modern web-based analytical dashboard built using **React**, **Tailwind CSS**, and **Vite**. Designed for visualizing data in an interactive and responsive interface.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Features
 
-Follow these steps:
+- Dynamic charts and data-driven UI
+- Built with modern React (hooks, components)
+- Styled with Tailwind CSS
+- Powered by Vite for fast development
+- Modular structure for easy maintenance
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Project Structure
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+analytical-dashboard-main/
 
-# Step 3: Install the necessary dependencies.
-npm i
+├── public/                 # Static files (index.html, icons, scripts)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+├── src/                    # Core source code
 
-**Edit a file directly in GitHub**
+│   ├── components/         # Reusable UI components
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+│   ├── pages/              # Route-level page components
 
-**Use GitHub Codespaces**
+│   ├── hooks/              # Custom React hooks
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+│   ├── lib/                # Utility libraries
+
+│   ├── App.jsx             # Root app component
+
+│   └── main.jsx            # Entry point
+
+├── package.json            # Project metadata and dependencies
+
+├── tailwind.config.js      # Tailwind configuration
+
+├── vite.config.js          # Vite setup
+
+└── README.md               # Project documentation
+
+
+## Requirements
+
+* Node.js v16+
+* npm v7+
+
+## Tech Stack
+
+* React + JSX
+* Tailwind CSS
+* Vite
+* PostCSS
