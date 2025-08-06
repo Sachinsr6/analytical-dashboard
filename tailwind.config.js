@@ -55,7 +55,8 @@ export default {
 					expense: 'hsl(var(--chart-expense))',
 					profit: 'hsl(var(--chart-profit))',
 					xero: 'hsl(var(--chart-xero))',
-					paypal: 'hsl(var(--chart-paypal))'
+					paypal: 'hsl(var(--chart-paypal))',
+					income: 'hsl(var(--chart-income))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

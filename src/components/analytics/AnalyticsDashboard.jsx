@@ -105,12 +105,12 @@ const RevenueChart = ({ data, chartType = 'line' }) => {
       {
         label: 'Xero Revenue',
         data: sampleData.xeroRevenue,
-        borderColor: '#8b5cf6',
-        backgroundColor: '#8b5cf620',
+        borderColor: 'hsl(268 83% 58%)', // Purple
+        backgroundColor: 'hsl(268 83% 58% / 0.2)',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: '#8b5cf6',
+        pointBackgroundColor: 'hsl(268 83% 58%)',
         pointBorderColor: '#ffffff',
         pointBorderWidth: 2,
         pointRadius: 6,
@@ -119,12 +119,12 @@ const RevenueChart = ({ data, chartType = 'line' }) => {
       {
         label: 'PayPal Revenue',
         data: sampleData.paypalRevenue,
-        borderColor: '#06b6d4',
-        backgroundColor: '#06b6d420',
+        borderColor: 'hsl(188 95% 43%)', // Cyan
+        backgroundColor: 'hsl(188 95% 43% / 0.2)',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: '#06b6d4',
+        pointBackgroundColor: 'hsl(188 95% 43%)',
         pointBorderColor: '#ffffff',
         pointBorderWidth: 2,
         pointRadius: 6,
@@ -142,7 +142,7 @@ const RevenueChart = ({ data, chartType = 'line' }) => {
           sampleData.xeroRevenue.reduce((sum, val) => sum + val, 0),
           sampleData.paypalRevenue.reduce((sum, val) => sum + val, 0)
         ],
-        backgroundColor: ['#8b5cf6', '#06b6d4'],
+        backgroundColor: ['hsl(268 83% 58%)', 'hsl(188 95% 43%)'],
         borderColor: '#ffffff',
         borderWidth: 3,
       },
@@ -156,15 +156,15 @@ const RevenueChart = ({ data, chartType = 'line' }) => {
       {
         label: 'Xero Revenue',
         data: sampleData.xeroRevenue,
-        backgroundColor: '#8b5cf6',
-        borderColor: '#8b5cf6',
+        backgroundColor: 'hsl(268 83% 58%)', // Purple
+        borderColor: 'hsl(268 83% 58%)',
         borderWidth: 1,
       },
       {
         label: 'PayPal Revenue',
         data: sampleData.paypalRevenue,
-        backgroundColor: '#06b6d4',
-        borderColor: '#06b6d4',
+        backgroundColor: 'hsl(188 95% 43%)', // Cyan
+        borderColor: 'hsl(188 95% 43%)',
         borderWidth: 1,
       },
     ],
@@ -246,11 +246,11 @@ const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
       {
         data: sampleData.amounts,
         backgroundColor: [
-          '#f97316',
-          '#6366f1',
-          '#10b981',
-          '#8b5cf6',
-          '#06b6d4',
+          'hsl(25 95% 53%)',    // Orange for Office Supplies
+          'hsl(249 83% 67%)',   // Indigo for Marketing  
+          'hsl(142 76% 36%)',   // Green for Travel
+          'hsl(268 83% 58%)',   // Purple for Software
+          'hsl(188 95% 43%)',   // Cyan for Utilities
         ],
         borderColor: '#ffffff',
         borderWidth: 3,
@@ -266,8 +266,8 @@ const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
       {
         label: 'Expenses',
         data: sampleData.amounts,
-        backgroundColor: '#f97316',
-        borderColor: '#f97316',
+        backgroundColor: 'hsl(25 95% 53%)', // Orange
+        borderColor: 'hsl(25 95% 53%)',
         borderWidth: 1,
         borderRadius: 6,
       },
@@ -311,8 +311,8 @@ const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
             {
               label: 'Expenses',
               data: sampleData.amounts,
-              borderColor: '#f97316',
-              backgroundColor: '#f9731620',
+              borderColor: 'hsl(25 95% 53%)', // Orange
+              backgroundColor: 'hsl(25 95% 53% / 0.2)',
               borderWidth: 3,
               fill: true,
               tension: 0.4,
@@ -364,8 +364,8 @@ const CashFlowChart = ({ data, chartType = 'bar' }) => {
       {
         label: 'Income',
         data: sampleData.income,
-        backgroundColor: '#6366f1',
-        borderColor: '#6366f1',
+        backgroundColor: 'hsl(249 83% 67%)', // Indigo
+        borderColor: 'hsl(249 83% 67%)',
         borderWidth: 1,
         borderRadius: 6,
         borderSkipped: false,
@@ -373,8 +373,8 @@ const CashFlowChart = ({ data, chartType = 'bar' }) => {
       {
         label: 'Expenses',
         data: sampleData.expenses,
-        backgroundColor: '#f97316',
-        borderColor: '#f97316',
+        backgroundColor: 'hsl(25 95% 53%)', // Orange
+        borderColor: 'hsl(25 95% 53%)',
         borderWidth: 1,
         borderRadius: 6,
         borderSkipped: false,
@@ -389,8 +389,8 @@ const CashFlowChart = ({ data, chartType = 'bar' }) => {
       {
         label: 'Income',
         data: sampleData.income,
-        borderColor: '#6366f1',
-        backgroundColor: '#6366f120',
+        borderColor: 'hsl(249 83% 67%)', // Indigo
+        backgroundColor: 'hsl(249 83% 67% / 0.2)',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
@@ -398,8 +398,8 @@ const CashFlowChart = ({ data, chartType = 'bar' }) => {
       {
         label: 'Expenses',
         data: sampleData.expenses,
-        borderColor: '#f97316',
-        backgroundColor: '#f9731620',
+        borderColor: 'hsl(25 95% 53%)', // Orange
+        backgroundColor: 'hsl(25 95% 53% / 0.2)',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
@@ -416,7 +416,7 @@ const CashFlowChart = ({ data, chartType = 'bar' }) => {
           sampleData.income.reduce((sum, val) => sum + val, 0),
           sampleData.expenses.reduce((sum, val) => sum + val, 0)
         ],
-        backgroundColor: ['#6366f1', '#f97316'],
+        backgroundColor: ['hsl(249 83% 67%)', 'hsl(25 95% 53%)'],
         borderColor: '#ffffff',
         borderWidth: 3,
       },
