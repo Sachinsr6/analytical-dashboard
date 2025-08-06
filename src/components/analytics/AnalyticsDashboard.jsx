@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
+import ChartTypeSelector from '@/components/ui/chart-type-selector';
 
 // Register Chart.js components immediately
 import {
@@ -91,7 +92,7 @@ const StatCard = ({ title, value, description, trend, icon }) => {
 };
 
 // Revenue Chart
-const RevenueChart = ({ data }) => {
+const RevenueChart = ({ data, chartType = 'line' }) => {
   const sampleData = data || {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     xeroRevenue: [12000, 19000, 15000, 25000, 22000, 30000],
@@ -132,9 +133,47 @@ const RevenueChart = ({ data }) => {
     ],
   };
 
+  // Transform data for pie chart
+  const pieData = {
+    labels: ['Xero Revenue', 'PayPal Revenue'],
+    datasets: [
+      {
+        data: [
+          sampleData.xeroRevenue.reduce((sum, val) => sum + val, 0),
+          sampleData.paypalRevenue.reduce((sum, val) => sum + val, 0)
+        ],
+        backgroundColor: ['#8b5cf6', '#06b6d4'],
+        borderColor: '#ffffff',
+        borderWidth: 3,
+      },
+    ],
+  };
+
+  // Transform data for horizontal bar
+  const horizontalBarData = {
+    labels: sampleData.labels,
+    datasets: [
+      {
+        label: 'Xero Revenue',
+        data: sampleData.xeroRevenue,
+        backgroundColor: '#8b5cf6',
+        borderColor: '#8b5cf6',
+        borderWidth: 1,
+      },
+      {
+        label: 'PayPal Revenue',
+        data: sampleData.paypalRevenue,
+        backgroundColor: '#06b6d4',
+        borderColor: '#06b6d4',
+        borderWidth: 1,
+      },
+    ],
+  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: chartType === 'horizontalBar' ? 'y' : 'x',
     plugins: {
       legend: {
         position: 'top',
@@ -144,7 +183,7 @@ const RevenueChart = ({ data }) => {
         intersect: false,
       },
     },
-    scales: {
+    scales: chartType === 'pie' ? {} : {
       x: {
         type: 'category',
         display: true,
@@ -156,17 +195,38 @@ const RevenueChart = ({ data }) => {
     },
   };
 
+  const renderChart = () => {
+    switch (chartType) {
+      case 'bar':
+        return <Bar data={horizontalBarData} options={options} />;
+      case 'horizontalBar':
+        return <Bar data={horizontalBarData} options={options} />;
+      case 'pie':
+        return <Doughnut data={pieData} options={options} />;
+      default:
+        return <Line data={lineData} options={options} />;
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Revenue Trends</CardTitle>
-        <CardDescription>
-          Monthly revenue comparison between Xero and PayPal
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-xl font-semibold">Revenue Trends</CardTitle>
+            <CardDescription>
+              Monthly revenue comparison between Xero and PayPal
+            </CardDescription>
+          </div>
+          <ChartTypeSelector
+            value={chartType}
+            onValueChange={data?.onChartTypeChange}
+          />
+        </div>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
-          <Line data={lineData} options={options} />
+          {renderChart()}
         </div>
       </CardContent>
     </Card>
@@ -174,7 +234,7 @@ const RevenueChart = ({ data }) => {
 };
 
 // Expense Chart
-const ExpenseChart = () => {
+const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
   const sampleData = {
     categories: ['Office Supplies', 'Marketing', 'Travel', 'Software', 'Utilities'],
     amounts: [3500, 8200, 2100, 4800, 1900],
@@ -199,9 +259,25 @@ const ExpenseChart = () => {
     ],
   };
 
+  // Transform data for bar charts
+  const barData = {
+    labels: sampleData.categories,
+    datasets: [
+      {
+        label: 'Expenses',
+        data: sampleData.amounts,
+        backgroundColor: '#f97316',
+        borderColor: '#f97316',
+        borderWidth: 1,
+        borderRadius: 6,
+      },
+    ],
+  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: chartType === 'horizontalBar' ? 'y' : 'x',
     plugins: {
       legend: {
         position: 'top',
@@ -211,19 +287,63 @@ const ExpenseChart = () => {
         intersect: false,
       },
     },
+    scales: chartType === 'doughnut' || chartType === 'pie' ? {} : {
+      x: {
+        display: true,
+      },
+      y: {
+        display: true,
+        beginAtZero: true,
+      },
+    },
+  };
+
+  const renderChart = () => {
+    switch (chartType) {
+      case 'bar':
+        return <Bar data={barData} options={options} />;
+      case 'horizontalBar':
+        return <Bar data={barData} options={options} />;
+      case 'line':
+        const lineData = {
+          labels: sampleData.categories,
+          datasets: [
+            {
+              label: 'Expenses',
+              data: sampleData.amounts,
+              borderColor: '#f97316',
+              backgroundColor: '#f9731620',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        };
+        return <Line data={lineData} options={options} />;
+      default:
+        return <Doughnut data={doughnutData} options={options} />;
+    }
   };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Expense Breakdown</CardTitle>
-        <CardDescription>
-          Distribution of expenses by category
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-xl font-semibold">Expense Breakdown</CardTitle>
+            <CardDescription>
+              Distribution of expenses by category
+            </CardDescription>
+          </div>
+          <ChartTypeSelector
+            value={chartType}
+            onValueChange={onChartTypeChange}
+          />
+        </div>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
-          <Doughnut data={doughnutData} options={options} />
+          {renderChart()}
         </div>
       </CardContent>
     </Card>
@@ -231,7 +351,7 @@ const ExpenseChart = () => {
 };
 
 // Cash Flow Chart
-const CashFlowChart = ({ data }) => {
+const CashFlowChart = ({ data, chartType = 'bar' }) => {
   const sampleData = data || {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     income: [20000, 31000, 33000, 40000, 42000, 55000],
@@ -262,9 +382,51 @@ const CashFlowChart = ({ data }) => {
     ],
   };
 
+  // Transform data for line chart
+  const lineData = {
+    labels: sampleData.labels,
+    datasets: [
+      {
+        label: 'Income',
+        data: sampleData.income,
+        borderColor: '#6366f1',
+        backgroundColor: '#6366f120',
+        borderWidth: 3,
+        fill: true,
+        tension: 0.4,
+      },
+      {
+        label: 'Expenses',
+        data: sampleData.expenses,
+        borderColor: '#f97316',
+        backgroundColor: '#f9731620',
+        borderWidth: 3,
+        fill: true,
+        tension: 0.4,
+      },
+    ],
+  };
+
+  // Transform data for pie chart
+  const pieData = {
+    labels: ['Total Income', 'Total Expenses'],
+    datasets: [
+      {
+        data: [
+          sampleData.income.reduce((sum, val) => sum + val, 0),
+          sampleData.expenses.reduce((sum, val) => sum + val, 0)
+        ],
+        backgroundColor: ['#6366f1', '#f97316'],
+        borderColor: '#ffffff',
+        borderWidth: 3,
+      },
+    ],
+  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: chartType === 'horizontalBar' ? 'y' : 'x',
     plugins: {
       legend: {
         position: 'top',
@@ -274,7 +436,7 @@ const CashFlowChart = ({ data }) => {
         intersect: false,
       },
     },
-    scales: {
+    scales: chartType === 'pie' ? {} : {
       x: {
         type: 'category',
         display: true,
@@ -286,17 +448,38 @@ const CashFlowChart = ({ data }) => {
     },
   };
 
+  const renderChart = () => {
+    switch (chartType) {
+      case 'line':
+        return <Line data={lineData} options={options} />;
+      case 'horizontalBar':
+        return <Bar data={barData} options={options} />;
+      case 'pie':
+        return <Doughnut data={pieData} options={options} />;
+      default:
+        return <Bar data={barData} options={options} />;
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Cash Flow Analysis</CardTitle>
-        <CardDescription>
-          Monthly income vs expenses comparison
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-xl font-semibold">Cash Flow Analysis</CardTitle>
+            <CardDescription>
+              Monthly income vs expenses comparison
+            </CardDescription>
+          </div>
+          <ChartTypeSelector
+            value={chartType}
+            onValueChange={data?.onChartTypeChange}
+          />
+        </div>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
-          <Bar data={barData} options={options} />
+          {renderChart()}
         </div>
       </CardContent>
     </Card>
@@ -307,6 +490,9 @@ const AnalyticsDashboard = () => {
   const [timePeriod, setTimePeriod] = useState('Monthly');
   const [selectedPeriod, setSelectedPeriod] = useState('January');
   const [selectedYear, setSelectedYear] = useState('2024');
+  const [revenueChartType, setRevenueChartType] = useState('line');
+  const [expenseChartType, setExpenseChartType] = useState('doughnut');
+  const [cashFlowChartType, setCashFlowChartType] = useState('bar');
 
   // Generate options based on time period
   const getPeriodOptions = () => {
@@ -955,10 +1141,25 @@ const AnalyticsDashboard = () => {
 
         {/* Charts */}
         <div className="space-y-4">
-          <RevenueChart data={chartData} />
+          <RevenueChart 
+            data={{
+              ...chartData,
+              onChartTypeChange: setRevenueChartType
+            }}
+            chartType={revenueChartType}
+          />
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-            <ExpenseChart />
-            <CashFlowChart data={chartData} />
+            <ExpenseChart 
+              chartType={expenseChartType}
+              onChartTypeChange={setExpenseChartType}
+            />
+            <CashFlowChart 
+              data={{
+                ...chartData,
+                onChartTypeChange: setCashFlowChartType
+              }}
+              chartType={cashFlowChartType}
+            />
           </div>
         </div>
       </div>
