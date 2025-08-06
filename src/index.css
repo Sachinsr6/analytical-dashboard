@@ -38,19 +38,6 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
-    /* Chart color tokens - using HSL for proper color management */
-    --chart-revenue: 221 83% 53%;     /* Blue */
-    --chart-expense: 24 95% 53%;      /* Orange */
-    --chart-profit: 162 63% 41%;      /* Green */
-    --chart-xero: 252 83% 63%;        /* Purple */
-    --chart-paypal: 189 85% 44%;      /* Cyan */
-    --chart-income: 221 83% 53%;      /* Blue */
-    --chart-categories-1: 24 95% 53%; /* Orange */
-    --chart-categories-2: 221 83% 53%; /* Blue */
-    --chart-categories-3: 162 63% 41%; /* Green */
-    --chart-categories-4: 252 83% 63%; /* Purple */
-    --chart-categories-5: 189 85% 44%; /* Cyan */
-
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -96,20 +83,6 @@ All colors MUST be HSL.
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 210 100% 50%;
-
-    /* Chart color tokens for dark mode */
-    --chart-revenue: 221 83% 63%;     /* Lighter blue */
-    --chart-expense: 24 95% 63%;      /* Lighter orange */
-    --chart-profit: 162 63% 51%;      /* Lighter green */
-    --chart-xero: 252 83% 73%;        /* Lighter purple */
-    --chart-paypal: 189 85% 54%;      /* Lighter cyan */
-    --chart-income: 221 83% 63%;      /* Lighter blue */
-    --chart-categories-1: 24 95% 63%; /* Lighter orange */
-    --chart-categories-2: 221 83% 63%; /* Lighter blue */
-    --chart-categories-3: 162 63% 51%; /* Lighter green */
-    --chart-categories-4: 252 83% 73%; /* Lighter purple */
-    --chart-categories-5: 189 85% 54%; /* Lighter cyan */
-
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
