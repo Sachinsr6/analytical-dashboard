@@ -16,12 +16,19 @@ const ChartTypeSelector = ({ value = 'line', onValueChange, className = '' }) =>
     { value: 'pie', label: 'Pie Chart', icon: PieChart },
   ];
 
+  const getCurrentIcon = () => {
+    const currentType = chartTypes.find(type => type.value === value);
+    if (currentType) {
+      const Icon = currentType.icon;
+      return <Icon className="h-4 w-4" />;
+    }
+    return <LineChart className="h-4 w-4" />;
+  };
+
   return (
     <Select value={value} onValueChange={onValueChange}>
-      <SelectTrigger className={`w-[140px] ${className}`}>
-        <SelectValue>
-          {chartTypes.find(type => type.value === value)?.label || 'Line Chart'}
-        </SelectValue>
+      <SelectTrigger className={`w-[50px] ${className}`}>
+        {getCurrentIcon()}
       </SelectTrigger>
       <SelectContent>
         {chartTypes.map((type) => {
