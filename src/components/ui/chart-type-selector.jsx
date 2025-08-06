@@ -6,13 +6,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { BarChart3, LineChart, PieChart, BarChart2 } from 'lucide-react';
+import { BarChart3, LineChart, PieChart } from 'lucide-react';
 
 const ChartTypeSelector = ({ value = 'line', onValueChange, className = '' }) => {
   const chartTypes = [
     { value: 'line', label: 'Line Chart', icon: LineChart },
     { value: 'bar', label: 'Bar Chart', icon: BarChart3 },
-    { value: 'horizontalBar', label: 'Horizontal Bar', icon: BarChart2 },
     { value: 'pie', label: 'Pie Chart', icon: PieChart },
   ];
 
