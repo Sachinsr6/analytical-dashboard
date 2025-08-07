@@ -234,11 +234,28 @@ const RevenueChart = ({ data, chartType = 'line' }) => {
 };
 
 // Expense Chart
-const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
-  const sampleData = {
-    categories: ['Office Supplies', 'Marketing', 'Travel', 'Software', 'Utilities'],
-    amounts: [3500, 8200, 2100, 4800, 1900],
+const ExpenseChart = ({ data, chartType = 'doughnut', onChartTypeChange }) => {
+  // Dynamic expense data based on time period
+  const getExpenseData = () => {
+    if (data?.timePeriod === 'Annually') {
+      return {
+        categories: ['Office Supplies', 'Marketing', 'Travel', 'Software', 'Utilities'],
+        amounts: [45000, 98000, 25000, 58000, 23000], // Annual amounts
+      };
+    } else if (data?.timePeriod === 'Quarterly') {
+      return {
+        categories: ['Office Supplies', 'Marketing', 'Travel', 'Software', 'Utilities'],
+        amounts: [12000, 26000, 6500, 15000, 6000], // Quarterly amounts
+      };
+    } else {
+      return {
+        categories: ['Office Supplies', 'Marketing', 'Travel', 'Software', 'Utilities'],
+        amounts: [3500, 8200, 2100, 4800, 1900], // Monthly amounts
+      };
+    }
   };
+
+  const sampleData = getExpenseData();
 
   const doughnutData = {
     labels: sampleData.categories,
@@ -1198,6 +1215,10 @@ const AnalyticsDashboard = () => {
           />
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
             <ExpenseChart 
+              data={{
+                ...chartData,
+                timePeriod: timePeriod
+              }}
               chartType={expenseChartType}
               onChartTypeChange={setExpenseChartType}
             />
