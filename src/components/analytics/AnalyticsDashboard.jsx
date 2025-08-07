@@ -93,7 +93,7 @@ const StatCard = ({ title, value, description, trend, icon }) => {
 
 // Revenue Chart
 const RevenueChart = ({ data, chartType = 'line' }) => {
-  const sampleData = data || {
+  const sampleData = data && data.labels ? data : {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     xeroRevenue: [12000, 19000, 15000, 25000, 22000, 30000],
     paypalRevenue: [8000, 12000, 18000, 15000, 20000, 25000],
@@ -400,7 +400,7 @@ const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
 
 // Cash Flow Chart
 const CashFlowChart = ({ data, chartType = 'bar' }) => {
-  const sampleData = data || {
+  const sampleData = data && data.labels ? data : {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     income: [20000, 31000, 33000, 40000, 42000, 55000],
     expenses: [15000, 18000, 21000, 25000, 28000, 32000],
