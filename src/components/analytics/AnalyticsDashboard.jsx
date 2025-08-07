@@ -702,7 +702,7 @@ const AnalyticsDashboard = () => {
       const monthStats = {
         'January_2024': {
           totalRevenue: '₹17,750',
-          totalExpense: '₹15,250',
+          totalExpense: '₹20,500',
           netProfit: '₹2,500',
           netCashflow: '₹31,000',
           trends: {
