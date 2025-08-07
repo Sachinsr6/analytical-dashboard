@@ -266,8 +266,20 @@ const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
       {
         label: 'Expenses',
         data: sampleData.amounts,
-        backgroundColor: 'hsl(25 95% 53%)', // Orange
-        borderColor: 'hsl(25 95% 53%)',
+        backgroundColor: [
+          'hsl(25 95% 53%)',    // Orange for Office Supplies
+          'hsl(249 83% 67%)',   // Indigo for Marketing  
+          'hsl(142 76% 36%)',   // Green for Travel
+          'hsl(268 83% 58%)',   // Purple for Software
+          'hsl(188 95% 43%)',   // Cyan for Utilities
+        ],
+        borderColor: [
+          'hsl(25 95% 53%)',    // Orange for Office Supplies
+          'hsl(249 83% 67%)',   // Indigo for Marketing  
+          'hsl(142 76% 36%)',   // Green for Travel
+          'hsl(268 83% 58%)',   // Purple for Software
+          'hsl(188 95% 43%)',   // Cyan for Utilities
+        ],
         borderWidth: 1,
         borderRadius: 6,
       },
@@ -309,10 +321,46 @@ const ExpenseChart = ({ chartType = 'doughnut', onChartTypeChange }) => {
           labels: sampleData.categories,
           datasets: [
             {
-              label: 'Expenses',
-              data: sampleData.amounts,
-              borderColor: 'hsl(25 95% 53%)', // Orange
+              label: 'Office Supplies',
+              data: [sampleData.amounts[0], 0, 0, 0, 0],
+              borderColor: 'hsl(25 95% 53%)',
               backgroundColor: 'hsl(25 95% 53% / 0.2)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+            },
+            {
+              label: 'Marketing',
+              data: [0, sampleData.amounts[1], 0, 0, 0],
+              borderColor: 'hsl(249 83% 67%)',
+              backgroundColor: 'hsl(249 83% 67% / 0.2)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+            },
+            {
+              label: 'Travel',
+              data: [0, 0, sampleData.amounts[2], 0, 0],
+              borderColor: 'hsl(142 76% 36%)',
+              backgroundColor: 'hsl(142 76% 36% / 0.2)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+            },
+            {
+              label: 'Software',
+              data: [0, 0, 0, sampleData.amounts[3], 0],
+              borderColor: 'hsl(268 83% 58%)',
+              backgroundColor: 'hsl(268 83% 58% / 0.2)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+            },
+            {
+              label: 'Utilities',
+              data: [0, 0, 0, 0, sampleData.amounts[4]],
+              borderColor: 'hsl(188 95% 43%)',
+              backgroundColor: 'hsl(188 95% 43% / 0.2)',
               borderWidth: 3,
               fill: true,
               tension: 0.4,
