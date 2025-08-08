@@ -334,52 +334,85 @@ const ExpenseChart = ({ data, chartType = 'doughnut', onChartTypeChange }) => {
       case 'horizontalBar':
         return <Bar data={barData} options={options} />;
       case 'line':
+        // For line chart, show expense trends over time periods instead of individual categories
+        const getExpenseTrendData = () => {
+          if (data?.timePeriod === 'Annually') {
+            return {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+              officeSupplies: [15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000],
+              marketing: [29000, 29000, 29000, 29000, 29000, 29000, 29000, 29000, 29000, 29000, 29500, 29500],
+              travel: [8000, 12000, 15000, 10000, 8000, 5000, 12000, 15000, 10000, 8000, 12000, 15000],
+              software: [15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000],
+              utilities: [6500, 6750, 7000, 6000, 5500, 7500, 8000, 7500, 6500, 6000, 6750, 7000]
+            };
+          } else if (data?.timePeriod === 'Quarterly') {
+            return {
+              labels: ['Month 1', 'Month 2', 'Month 3'],
+              officeSupplies: [15000, 15000, 15000],
+              marketing: [29000, 29000, 29500],
+              travel: [10000, 10000, 10000],
+              software: [15000, 15000, 15000],
+              utilities: [6750, 6750, 6750]
+            };
+          } else {
+            return {
+              labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+              officeSupplies: [875, 875, 875, 875],
+              marketing: [2050, 2050, 2050, 2050],
+              travel: [525, 525, 525, 525],
+              software: [1200, 1200, 1200, 1200],
+              utilities: [475, 475, 475, 475]
+            };
+          }
+        };
+
+        const trendData = getExpenseTrendData();
         const lineData = {
-          labels: sampleData.categories,
+          labels: trendData.labels,
           datasets: [
             {
               label: 'Office Supplies',
-              data: [sampleData.amounts[0], 0, 0, 0, 0],
+              data: trendData.officeSupplies,
               borderColor: 'hsl(25 95% 53%)',
               backgroundColor: 'hsl(25 95% 53% / 0.2)',
               borderWidth: 3,
-              fill: true,
+              fill: false,
               tension: 0.4,
             },
             {
               label: 'Marketing',
-              data: [0, sampleData.amounts[1], 0, 0, 0],
+              data: trendData.marketing,
               borderColor: 'hsl(249 83% 67%)',
               backgroundColor: 'hsl(249 83% 67% / 0.2)',
               borderWidth: 3,
-              fill: true,
+              fill: false,
               tension: 0.4,
             },
             {
               label: 'Travel',
-              data: [0, 0, sampleData.amounts[2], 0, 0],
+              data: trendData.travel,
               borderColor: 'hsl(142 76% 36%)',
               backgroundColor: 'hsl(142 76% 36% / 0.2)',
               borderWidth: 3,
-              fill: true,
+              fill: false,
               tension: 0.4,
             },
             {
               label: 'Software',
-              data: [0, 0, 0, sampleData.amounts[3], 0],
+              data: trendData.software,
               borderColor: 'hsl(268 83% 58%)',
               backgroundColor: 'hsl(268 83% 58% / 0.2)',
               borderWidth: 3,
-              fill: true,
+              fill: false,
               tension: 0.4,
             },
             {
               label: 'Utilities',
-              data: [0, 0, 0, 0, sampleData.amounts[4]],
+              data: trendData.utilities,
               borderColor: 'hsl(188 95% 43%)',
               backgroundColor: 'hsl(188 95% 43% / 0.2)',
               borderWidth: 3,
-              fill: true,
+              fill: false,
               tension: 0.4,
             },
           ],
@@ -713,7 +746,7 @@ const AnalyticsDashboard = () => {
 
   // Get stats data based on selections
   const getStatsData = () => {
-    const key = timePeriod === 'Annually' ? selectedPeriod : `${selectedPeriod}_${selectedYear}`;
+    const key = timePeriod === 'Annually' ? `${selectedPeriod}_${selectedYear}` : `${selectedPeriod}_${selectedYear}`;
     
     if (timePeriod === 'Monthly') {
       const monthStats = {
@@ -1053,7 +1086,7 @@ const AnalyticsDashboard = () => {
       return quarterStats[key] || quarterStats['Q1_2024'];
     } else { // Annually
       const yearStats = {
-        '2024': {
+        '2024_2024': {
           totalRevenue: '₹1,371,000',
           totalExpense: '₹909,000',
           netProfit: '₹462,000',
@@ -1065,32 +1098,20 @@ const AnalyticsDashboard = () => {
             cashflow: { value: 28.7, isPositive: true }
           }
         },
-        '2023': {
-          totalRevenue: '₹1,215,000',
-          totalExpense: '₹800,000',
-          netProfit: '₹415,000',
-          netCashflow: '₹1,215,000',
+        '2025_2025': {
+          totalRevenue: '₹1,875,000',
+          totalExpense: '₹1,164,000',
+          netProfit: '₹711,000',
+          netCashflow: '₹1,875,000',
           trends: {
-            revenue: { value: 22.7, isPositive: true },
-            expense: { value: 16.2, isPositive: false },
-            profit: { value: 29.8, isPositive: true },
-            cashflow: { value: 24.3, isPositive: true }
-          }
-        },
-        '2022': {
-          totalRevenue: '₹1,035,000',
-          totalExpense: '₹695,000',
-          netProfit: '₹340,000',
-          netCashflow: '₹1,035,000',
-          trends: {
-            revenue: { value: 18.2, isPositive: true },
-            expense: { value: 14.1, isPositive: false },
-            profit: { value: 26.3, isPositive: true },
-            cashflow: { value: 20.8, isPositive: true }
+            revenue: { value: 54.7, isPositive: true },
+            expense: { value: 28.1, isPositive: false },
+            profit: { value: 134.7, isPositive: true },
+            cashflow: { value: 54.7, isPositive: true }
           }
         }
       };
-      return yearStats[selectedPeriod] || yearStats['2024'];
+      return yearStats[key] || yearStats['2024_2024'];
     }
   };
 
